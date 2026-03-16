@@ -6,10 +6,16 @@ from src.function import X
 
 
 
-def run_tests():
+def plot_signal():
     print("Running tests")
-    t = np.arange(0, 100, 0.1)
-    plt.plot(t, X(t))
+    Fs = 10 ** 7
+    t = np.arange(0, 0.0001, 1/Fs)
+    X_real = np.real(X(t))
+    X_imag = np.imag(X(t))
+    plt.plot(t, X_real)
+    #plt.plot(t, X_imag)
+
     plt.show()
 
-
+def run_tests():
+    plot_signal()
