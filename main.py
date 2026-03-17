@@ -2,6 +2,7 @@ import numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 from src.sample import Z
 from src.tests import run_tests
 from src.CRB import CRB
@@ -11,7 +12,7 @@ import constants
 
 def main():
     #run_tests() 
-   # Get Z, which is the sampled values of X(t)
+    #Get Z, which is the sampled values of X(t)
     z = Z()
 
     (w_hat_CRB, phi_hat_CRB) = CRB(z)
