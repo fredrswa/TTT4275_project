@@ -5,7 +5,7 @@
 
 
 
-def MLE(x_sam, n0, N):
+def MLE(x_sam):
 
 
 
