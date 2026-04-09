@@ -9,7 +9,6 @@ def F(z, w):
     n = np.arange(N)
     return np.sum(z * np.exp(-1j * w * n * T)) / N
 
-
 def fft(z, M):
     Z_fft = np.fft.fft(z, n=M)
     m_star = np.argmax(np.abs(Z_fft))
@@ -18,6 +17,7 @@ def fft(z, M):
     return omega_hat, m_star, Z_fft
 
 def phi_hat(z, omega_hat):
+    N = np.size(z)
     n = np.arange(N) + n0
     F_hat = np.mean(z * np.exp(-1j * omega_hat * n * T))
     phi_hat = np.angle(F_hat)

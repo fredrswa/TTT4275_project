@@ -1,8 +1,5 @@
 import numpy as np
 
-
-
-
 '''
 Samling Size
 '''
@@ -17,8 +14,6 @@ n0  = -256
 '''
 Noise
 '''   
-SIGMA_R = 0.1
-SIGMA_I = 0.1
 SNR_DECIBEL = np.array([-10 + i * 10 for i in range(8)])
 SNR_LINEAR  = 10**(SNR_DECIBEL/10)
 SIGMA_SNR = np.sqrt(1 / (2 * SNR_LINEAR))
@@ -26,5 +21,12 @@ SIGMA_SNR = np.sqrt(1 / (2 * SNR_LINEAR))
 '''
 FFT
 '''
-FFT_SIZES = np.array([10, 12, 14, 16, 18, 20]) ** 2
+FFT_SIZES = 2 ** np.array([10, 12, 14, 16, 18, 20])
 
+'''
+
+'''
+A = 1.0
+f_0 = 10**5
+omega_0 = 2 * np.pi * f_0
+phi = np.pi / 8 

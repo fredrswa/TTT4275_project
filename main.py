@@ -10,16 +10,11 @@ from src.MLE import MLE
 
 def main():
     #Get Z, which is the sampled values of X(t)
-    z = Z()
-    print(constants.SNR_DECIBEL)
-    print(constants.SNR_LINEAR)
-    print(constants.SIGMA_SNR)
     (w_hat_CRB, phi_hat_CRB) = CRB()
     print(f"{(w_hat_CRB, phi_hat_CRB)=}")
 
-    (w_hat_MLE, phi_hat_MLE) = MLE(z)
-    print(f"{(w_hat_MLE, phi_hat_MLE)=}")
-
+    results = MLE()
+    print(results)
 
 if __name__ == "__main__":
     main()
