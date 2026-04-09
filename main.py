@@ -41,19 +41,27 @@ def main():
     #run_tests() 
     #Get Z, which is the sampled values of X(t)'
     ##Iterations for different M and SNR
-    Ms = np.array([2**10, 2**12, 2**14, 2**16, 2**18, 2**20])
+    Ms = np.array([2**10, 2**12, 2**14, 2**16])#, 2**18, 2**20])
     SNR_db = np.array([-10, 0, 10, 20, 30, 40, 50, 60])
     SNR_lin = 10 ** (SNR_db / 10)
     
-    iter = 1000
+    iter = 100
 
+    omega_vars = np.zeros((len(SNR_lin)))
    
-    for SNR in SNR_lin:
-        sigma = np.sqrt(1/(2*SNR))
+    for M in Ms:
+        omega_vars = np.zeros((len(SNR_lin)))
+        phi_vars = np.zeros((len(SNR_lin)))
 
-        for M in Ms:
+        crb_omega = np.zeros((len(SNR_lin)))
+        crb_phi = np.zeros((len(SNR_lin)))
+        
+        for snr_index, SNR in enumerate(SNR_lin):
+            sigma = np.sqrt(1/(2*SNR))
             e_omegas = np.zeros(iter)
             e_phis = np.zeros(iter)
+
+            crb_omega[snr_index], crb_phi[snr_index] = CRB(sigma)
 
 
             for i in range(iter):
@@ -67,17 +75,15 @@ def main():
                 e_phis[i] = np.angle(np.exp(1j * (phi - phi_hat)))
 
             #Calculate variance 
-            omega_var = np.var(e_omegas) ##Variansen til omega er ofte mindre enn crlb det gir ikke mening
-            phi_var = np.var(e_phis)
-            plt.semilogy(SNR_db, omega_var, label=f"M={M}")
-
+            omega_vars[snr_index] = np.var(e_omegas) ##Variansen til omega er ofte mindre enn crlb det gir ikke mening
+            phi_vars[snr_index] = np.var(e_phis)
             
-            omega_hat_CRB, phi_hat_CRB = CRB(sigma)
-    plt.semilogy(SNR_db, omega_hat_CRB, 'k--', label="CRLB")
-    plt.xlabel("SNR (dB)")
-    plt.ylabel("Variance of frequency estimate")
-    plt.legend()
-    plt.grid()
+        plt.semilogy(SNR_db, omega_vars, label=f"M={M}")
+        plt.semilogy(SNR_db, crb_omega,'k--' ,label="CRLB")
+        plt.xlabel("SNR (dB)")
+        plt.ylabel("Variance of frequency estimate")
+        plt.legend()
+        plt.grid()
 
 
  

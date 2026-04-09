@@ -13,7 +13,7 @@ T       = constants.T
 
 
 def addGaussianNoise(x_t, T, sigma):
-    sigma_i = sigma*1j
+    sigma_i = sigma
     sigma_r = sigma
     N = np.size(x_t)
     noice = np.random.normal(0, sigma_r, (1, N)) + 1j * np.random.normal(0, sigma_i, (1, N))
