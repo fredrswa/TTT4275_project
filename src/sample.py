@@ -12,9 +12,9 @@ N       = constants.N
 T       = constants.T
 
 
-def addGaussianNoise(x_t, T):
+def addGaussianNoise(x_t):
     N = np.size(x_t)
-    Z_t = x_t + np.random.normal(0,sigma_r, (1, N)) + 1j * np.random.normal(0, sigma_i, (1, N))
+    Z_t = x_t + np.random.normal(0,sigma_r, N) + 1j * np.random.normal(0, sigma_i, N)
     return Z_t
 
 def addBias(x_t, T):
@@ -27,7 +27,7 @@ def Z():
     n = n0 + N - 1
     t = np.arange(n0*T, n*T, T)
     
-    Z_t = addGaussianNoise(X(t), T)
+    Z_t = addGaussianNoise(X(t) )
     #Z_t = addBiasNoise(X(t), T)
 
     if n - n0 != np.size(t):
