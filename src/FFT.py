@@ -1,10 +1,11 @@
 
 import numpy as np
 
-from constants import T, N, n0
+from constants import T,  n0
 
 
 def F(z, w):    
+    N = len(z)
     z = np.asarray(z).flatten()
     n = np.arange(N)
     return np.sum(z * np.exp(-1j * w * n * T)) / N

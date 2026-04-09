@@ -24,7 +24,7 @@ def wrap_to_pi(angle):
 
 def MLE():
     results = {}
-    mc_runs = 10
+    mc_runs = 1000
     for M in FFT_SIZES:
         var_omega = []
         var_phi = []
@@ -41,7 +41,6 @@ def MLE():
 
                 omega_hat, _, _ = fft(z, M)
                 phase_hat = phi_hat(z, omega_hat)
-                np.rad2deg
                 omega_errors[k] = omega_0 - omega_hat
                 phi_errors[k] = wrap_to_pi(phi - phase_hat)
             var_omega.append(np.var(omega_errors, ddof=1))
