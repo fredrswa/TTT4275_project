@@ -17,7 +17,7 @@ def addGaussianNoise(x_t):
     Z_t = x_t + np.random.normal(0,sigma_r, N) + 1j * np.random.normal(0, sigma_i, N)
     return Z_t
 
-def addBias(x_t, T):
+def addBias(x_t):
     # Currently not implemented, and not required, but might be cool to test
     # Will probably have to extend state vector
     Z_t = x_t
