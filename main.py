@@ -8,13 +8,18 @@ from src.tests import run_tests
 from src.CRB import CRB
 from src.MLE import MLE
 
+from src.plot import plot_task1_results
+
 def main():
     #Get Z, which is the sampled values of X(t)
     (w_hat_CRB, phi_hat_CRB) = CRB()
     print(f"{(w_hat_CRB, phi_hat_CRB)=}")
 
     results = MLE()
-    print(results)
+    
+    plot_task1_results(results, w_hat_CRB, phi_hat_CRB) 
+
+
 
 if __name__ == "__main__":
     main()
