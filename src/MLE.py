@@ -12,7 +12,7 @@ def wrap_to_pi(angle):
 
 def MLE():
     results = {}
-    mc_runs = 1
+    mc_runs = 1000
     for M in FFT_SIZES:
         var_omega   = []
         var_phi     = []
