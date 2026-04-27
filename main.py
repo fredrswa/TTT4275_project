@@ -1,25 +1,21 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-import constants
-from src.sample import Z
-from src.tests import run_tests
 from src.CRB import CRB
 from src.MLE import MLE
-
-from src.plot import plot_task1_results
+from src.NM  import NM
+from src.plot import plot_task1a_results, plot_task1b_results
 
 def main():
-    #Get Z, which is the sampled values of X(t)
     (w_hat_CRB, phi_hat_CRB) = CRB()
-    print(f"{(w_hat_CRB, phi_hat_CRB)=}")
 
-    results = MLE()
-    
-    plot_task1_results(results, w_hat_CRB, phi_hat_CRB) 
+    '''TASK 1a'''
+    results_MLE = MLE()
+        
+    '''TASK 1b'''
+    results_NM  = NM()
 
 
+    '''Plotting'''
+    plot_task1a_results(results_MLE, w_hat_CRB, phi_hat_CRB) 
+    plot_task1b_results(results_NM , w_hat_CRB, phi_hat_CRB)
 
 if __name__ == "__main__":
     main()

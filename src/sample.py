@@ -1,14 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from src.function import X
-import constants
+from constants import A, f_0, omega_0, phi, n0, N, T
 
 
-n0      = constants.n0
-N       = constants.N
-T       = constants.T
-
+def X(t):
+    return A * np.exp((omega_0 * t + phi)*1j)
 
 def addGaussianNoise(x_t, sigma):
     N = np.size(x_t)
@@ -27,7 +24,4 @@ def Z(sigma):
     
     Z_t = addGaussianNoise(X(t), sigma)
     #Z_t = addBiasNoise(X(t), T)
-
-    if n - n0 != np.size(t):
-        print(__name__, ": t size does not correspond to n difference")
     return Z_t
